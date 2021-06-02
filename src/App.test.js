@@ -2,7 +2,7 @@ import { shallow } from 'enzyme';
 import App from './App';
 import WeatherWidget from './component/WeatherWidget';
 
-describe('App', () => {
+describe('App Test', () => {
   it('renders App', () => {
     const wrapper = shallow(<App />);
     expect(wrapper).not.toBeNull();
