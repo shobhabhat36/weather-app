@@ -29,7 +29,6 @@ describe('Weather Banner Test', () => {
     })
 
     it('renders temperature div with numeric value', () => {
-        // const wrapper = shallow(<WeatherBanner weather={{}} />);
         expect(wrapper.exists('#temperature')).toBeTruthy();
 
         const temperature = wrapper.find('#temperature').text();
@@ -39,7 +38,6 @@ describe('Weather Banner Test', () => {
     });
 
     it('rendres temperature mode elements and links', () => {
-        // const wrapper = mount(<WeatherBanner weather={{}} />);
         expect(wrapper.exists('#temperature-mode')).toBeTruthy();
 
         const tempModeDiv = wrapper.find('#temperature-mode');
@@ -57,11 +55,8 @@ describe('Weather Banner Test', () => {
     });
 
     it('renders weather conditions Visibility, Humidity, and Wind', () => {
-        // const wrapper = shallow(<WeatherBanner weather={weatherDetails} />);
         expect(wrapper.exists('#w-conditions')).toBeTruthy();
 
-        //Visibility, Humidity, Wind
-        // Units => wind (C-> km/h, F-> mph)
         const weatherConditionDiv = wrapper.find('#w-conditions');
         expect(weatherConditionDiv.children().length).toEqual(3);
 
@@ -74,5 +69,35 @@ describe('Weather Banner Test', () => {
         expect(weatherConditionDiv.childAt(2).name()).toEqual('div');
         expect(weatherConditionDiv.childAt(2).text())
             .toEqual(`Wind: ${wrapper.state('wind_value')} ${wrapper.state('wind_unit')}`);
+    });
+
+    it('tests temperature modes change for Wind', () => {
+        // Units => wind (C-> km/h, F-> mph)
+
+        // Initial values
+        expect(wrapper.state('mode')).toEqual('C');
+        expect(wrapper.state('wind_unit')).toEqual('km/h');
+
+        const anchorF = wrapper.find('a[data-testid="link-f"]');
+        expect(anchorF.length).toEqual(1);
+
+        anchorF.simulate('click', {
+            preventDefault: () => { },
+            stopPropagation: () => { },
+            target: { innerText: "F" }
+        });
+        expect(wrapper.state('mode')).toEqual('F');
+        expect(wrapper.state('wind_unit')).toEqual('mph');
+
+        const anchorC = wrapper.find('a[data-testid="link-c"]');
+        expect(anchorC.length).toEqual(1);
+
+        anchorC.simulate('click', {
+            preventDefault: () => { },
+            stopPropagation: () => { },
+            target: { innerText: "C" }
+        });
+        expect(wrapper.state('mode')).toEqual('C');
+        expect(wrapper.state('wind_unit')).toEqual('km/h');
     });
 });
