@@ -100,4 +100,33 @@ describe('Weather Banner Test', () => {
         expect(wrapper.state('mode')).toEqual('C');
         expect(wrapper.state('wind_unit')).toEqual('km/h');
     });
+
+    it('tests temperature modes change for Temperature', () => {
+        // temp changes
+        // Initial values
+        expect(wrapper.state('mode')).toEqual('C');
+        expect(wrapper.state('temperature')).toEqual(22);
+
+        const anchorF = wrapper.find('a[data-testid="link-f"]');
+        expect(anchorF.length).toEqual(1);
+
+        anchorF.simulate('click', {
+            preventDefault: () => { },
+            stopPropagation: () => { },
+            target: { innerText: "F" }
+        });
+        expect(wrapper.state('mode')).toEqual('F');
+        expect(wrapper.state('temperature')).toEqual(71.6);
+
+        const anchorC = wrapper.find('a[data-testid="link-c"]');
+        expect(anchorC.length).toEqual(1);
+
+        anchorC.simulate('click', {
+            preventDefault: () => { },
+            stopPropagation: () => { },
+            target: { innerText: "C" }
+        });
+        expect(wrapper.state('mode')).toEqual('C');
+        expect(wrapper.state('temperature')).toEqual(22);
+    });
 });

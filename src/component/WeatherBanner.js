@@ -8,14 +8,19 @@ export default class WeatherBanner extends Component {
     state = {
         mode: null,
         wind_value: this.props.weather.wind_speed,
-        wind_unit: null
+        wind_unit: null,
+        temperature: this.props.weather.the_temp
     }
     componentDidMount() {
         this.changeModeTo('C');
     }
+    celsiusToFahrenheit = () => {
+        return (this.props.weather.the_temp * (9 / 5)) + 32;
+    }
     changeModeTo = (modeToChange) => {
         let wind_value = this.props.weather.wind_speed;
         let wind_unit = 'knots';
+        let temperature = this.props.weather.the_temp;
 
         if (!this.state.mode || (this.state.mode && modeToChange !== this.state.mode)) {
             if (modeToChange === 'C') {
@@ -24,12 +29,14 @@ export default class WeatherBanner extends Component {
             } else {
                 wind_value *= 1.150779;
                 wind_unit = 'mph';
+                temperature = this.celsiusToFahrenheit();
             }
 
             this.setState({
                 mode: modeToChange,
                 wind_value: wind_value.toFixed(0),
-                wind_unit
+                wind_unit,
+                temperature
             });
         }
     }
@@ -43,7 +50,7 @@ export default class WeatherBanner extends Component {
         const url = '';
         return (
             <>
-                <div id="temperature" className="temperature">{this.props.weather.the_temp}</div>
+                <div id="temperature" className="temperature">{this.state.temperature}</div>
                 <div id="temperature-mode" className="temperature-mode">
                     <span>&deg;</span>
                     <a href={url} data-testid='link-c' onClick={this.handleModeChange}>C</a>
