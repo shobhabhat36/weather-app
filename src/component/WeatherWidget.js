@@ -1,10 +1,12 @@
 import React from 'react'
 import WeatherBanner from './WeatherBanner';
 
-export default () => {
-    return(
+const WeatherWidget = () => {
+    return (
         <div>
             <WeatherBanner />
         </div>
     );
 };
+
+export default WeatherWidget;
