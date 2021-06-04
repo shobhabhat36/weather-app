@@ -147,8 +147,8 @@ describe('Weather Banner Test', () => {
     });
 
     it('renders weather status icon', () => {
-        expect(wrapper.exists('img#weatherStatusIcon')).toBeTruthy();
-        expect(wrapper.find('img#weatherStatusIcon').prop('src')).toEqual(`https://www.metaweather.com/static/img/weather/${weatherDetails.weather_state_abbr}.svg`);
-        expect(wrapper.find('img#weatherStatusIcon').prop('alt')).toEqual(weatherDetails.weather_state_name);
+        expect(wrapper.exists('img.weatherStatusIcon')).toBeTruthy();
+        expect(wrapper.find('img.weatherStatusIcon').prop('src')).toEqual(`https://www.metaweather.com/static/img/weather/${weatherDetails.weather_state_abbr}.svg`);
+        expect(wrapper.find('img.weatherStatusIcon').prop('alt')).toEqual(weatherDetails.weather_state_name);
     });
 });

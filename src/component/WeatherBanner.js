@@ -52,11 +52,14 @@ export default class WeatherBanner extends Component {
         const date = new Date(Date.parse(this.props.weather.time));
         //
         return (
-            <>
-                <img id="weatherStatusIcon" src={api.fetchIconUrl(this.props.weather.weather_state_abbr)} alt={this.props.weather.weather_state_name} />
+            <div className="weather-banner">
+                <div>
+                    <img className="weatherStatusIcon" src={api.fetchIconUrl(this.props.weather.weather_state_abbr)}
+                        alt={this.props.weather.weather_state_name} />
+                </div>
                 <div id="temperature" className="temperature">{this.state.temperature}</div>
                 <div id="temperature-mode" className="temperature-mode">
-                    <span>&deg;</span>
+                    <span className="degree-icon">&deg;</span>
                     <a href={url} data-testid='link-c' onClick={this.handleModeChange}>C</a>
                     <span>|</span>
                     <a href={url} data-testid='link-f' onClick={this.handleModeChange}>F</a>
@@ -73,7 +76,7 @@ export default class WeatherBanner extends Component {
                     </div>
                     <div className="weatherStateName">{this.props.weather.weather_state_name}</div>
                 </div>
-            </>
+            </div>
         )
     }
 };
