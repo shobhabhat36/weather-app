@@ -130,7 +130,7 @@ describe('Weather Banner Test', () => {
         expect(wrapper.state('temperature')).toEqual(22);
     });
 
-    it('', () => {
+    it('renders weather info board', () => {
         expect(wrapper.exists('div#info')).toBeTruthy();
 
         expect(wrapper.exists('div#info > div.location')).toBeTruthy();
@@ -144,5 +144,11 @@ describe('Weather Banner Test', () => {
         expect(wrapper.exists('div#info > div.weatherStateName')).toBeTruthy();
         const weatherStateName = wrapper.find('div#info > div.weatherStateName').text();
         expect(weatherStateName).toEqual(weatherDetails.weather_state_name);
+    });
+
+    it('renders weather status icon', () => {
+        expect(wrapper.exists('img#weatherStatusIcon')).toBeTruthy();
+        expect(wrapper.find('img#weatherStatusIcon').prop('src')).toEqual(`https://www.metaweather.com/static/img/weather/${weatherDetails.weather_state_abbr}.svg`);
+        expect(wrapper.find('img#weatherStatusIcon').prop('alt')).toEqual(weatherDetails.weather_state_name);
     });
 });

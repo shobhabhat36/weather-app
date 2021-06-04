@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import * as api from '../api';
 
 export default class WeatherBanner extends Component {
     static propTypes = {
@@ -49,8 +50,10 @@ export default class WeatherBanner extends Component {
     render() {
         const url = '';
         const date = new Date(Date.parse(this.props.weather.time));
+        //
         return (
             <>
+                <img id="weatherStatusIcon" src={api.fetchIconUrl(this.props.weather.weather_state_abbr)} alt={this.props.weather.weather_state_name} />
                 <div id="temperature" className="temperature">{this.state.temperature}</div>
                 <div id="temperature-mode" className="temperature-mode">
                     <span>&deg;</span>
