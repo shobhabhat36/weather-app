@@ -48,6 +48,7 @@ export default class WeatherBanner extends Component {
     }
     render() {
         const url = '';
+        const date = new Date(Date.parse(this.props.weather.time));
         return (
             <>
                 <div id="temperature" className="temperature">{this.state.temperature}</div>
@@ -61,6 +62,13 @@ export default class WeatherBanner extends Component {
                     <div>Visibility: {this.props.weather.visibility}%</div>
                     <div>Humidity: {this.props.weather.humidity}%</div>
                     <div>Wind: {this.state.wind_value} {this.state.wind_unit}</div>
+                </div>
+                <div className="info" id="info">
+                    <div className="location">{this.props.weather.title}</div>
+                    <div className="daytime">
+                        {date.toLocaleString('en-US', { weekday: 'long', hour: 'numeric', minute: 'numeric', hour12: true })}
+                    </div>
+                    <div className="weatherStateName">{this.props.weather.weather_state_name}</div>
                 </div>
             </>
         )

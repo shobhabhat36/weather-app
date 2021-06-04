@@ -101,7 +101,7 @@ describe('Weather Banner Test', () => {
         expect(wrapper.state('wind_unit')).toEqual('km/h');
     });
 
-    it('tests temperature modes change for Temperature', () => {
+    it('tests temperature modes change for Temperature conversions', () => {
         // temp changes
         // Initial values
         expect(wrapper.state('mode')).toEqual('C');
@@ -128,5 +128,21 @@ describe('Weather Banner Test', () => {
         });
         expect(wrapper.state('mode')).toEqual('C');
         expect(wrapper.state('temperature')).toEqual(22);
+    });
+
+    it('', () => {
+        expect(wrapper.exists('div#info')).toBeTruthy();
+
+        expect(wrapper.exists('div#info > div.location')).toBeTruthy();
+        const location = wrapper.find('div#info > div.location').text();
+        expect(location).toEqual(weatherDetails.title);
+
+        expect(wrapper.exists('div#info > div.daytime')).toBeTruthy();
+        const daytime = wrapper.find('div#info > div.daytime').text();
+        expect(daytime).toEqual("Thursday 8:08 PM");
+
+        expect(wrapper.exists('div#info > div.weatherStateName')).toBeTruthy();
+        const weatherStateName = wrapper.find('div#info > div.weatherStateName').text();
+        expect(weatherStateName).toEqual(weatherDetails.weather_state_name);
     });
 });
