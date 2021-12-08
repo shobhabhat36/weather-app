@@ -50,7 +50,7 @@ export default class WeatherBanner extends Component {
     render() {
         const url = '';
         const date = new Date(Date.parse(this.props.weather.time));
-        //
+
         return (
             <div className="weather-banner">
                 <div>

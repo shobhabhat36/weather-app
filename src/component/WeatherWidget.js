@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import WeatherBanner from './WeatherBanner';
+import LocationSearch from "./LocationSearch";
 
 export default class WeatherWidget extends Component {
     render() {
@@ -25,6 +26,7 @@ export default class WeatherWidget extends Component {
         };
         return (
             <div>
+                <LocationSearch />
                 <WeatherBanner weather={weatherDetails} />
             </div>
         )
