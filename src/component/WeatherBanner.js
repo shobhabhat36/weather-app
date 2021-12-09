@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as api from '../api';
+import { round } from "lodash/math";
 
 export default class WeatherBanner extends Component {
     static propTypes = {
@@ -37,7 +38,7 @@ export default class WeatherBanner extends Component {
                 mode: modeToChange,
                 wind_value: wind_value.toFixed(0),
                 wind_unit,
-                temperature
+                temperature: round(temperature)
             });
         }
     }
@@ -65,7 +66,7 @@ export default class WeatherBanner extends Component {
                     <a href={url} data-testid='link-f' onClick={this.handleModeChange}>F</a>
                 </div>
                 <div id="w-conditions" className="w-conditions">
-                    <div>Visibility: {this.props.weather.visibility}%</div>
+                    <div>Visibility: {this.props.weather.visibility} miles</div>
                     <div>Humidity: {this.props.weather.humidity}%</div>
                     <div>Wind: {this.state.wind_value} {this.state.wind_unit}</div>
                 </div>

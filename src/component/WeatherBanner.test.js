@@ -61,7 +61,7 @@ describe('Weather Banner Test', () => {
         expect(weatherConditionDiv.children().length).toEqual(3);
 
         expect(weatherConditionDiv.childAt(0).name()).toEqual('div');
-        expect(weatherConditionDiv.childAt(0).text()).toEqual(`Visibility: ${weatherDetails.visibility}%`);
+        expect(weatherConditionDiv.childAt(0).text()).toEqual(`Visibility: ${weatherDetails.visibility} miles`);
 
         expect(weatherConditionDiv.childAt(1).name()).toEqual('div');
         expect(weatherConditionDiv.childAt(1).text()).toEqual(`Humidity: ${weatherDetails.humidity}%`);
@@ -116,7 +116,7 @@ describe('Weather Banner Test', () => {
             target: { innerText: "F" }
         });
         expect(wrapper.state('mode')).toEqual('F');
-        expect(wrapper.state('temperature')).toEqual(71.6);
+        expect(wrapper.state('temperature')).toEqual(72);
 
         const anchorC = wrapper.find('a[data-testid="link-c"]');
         expect(anchorC.length).toEqual(1);
